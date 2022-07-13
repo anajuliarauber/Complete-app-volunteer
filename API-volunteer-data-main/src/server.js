@@ -1,11 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const indexRoutes = require('./routes/index')
+const indexRoutes = require('./routes/index');
+const cors = require('cors')
 
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use('/', indexRoutes);
 
 const mongoURL = process.env.MONGO_URL;
