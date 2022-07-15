@@ -11,11 +11,12 @@ app.use(cors());
 app.use('/', indexRoutes);
 
 const mongoURL = process.env.MONGO_URL;
+const port = process.env.PORT;
 
 mongoose.connect(mongoURL)
 .then(()=> {
     console.log("conectado ao banco de dados");
-    app.listen(3001);
+    app.listen(port);
 })
 .catch((err) => console.log(err))
 
