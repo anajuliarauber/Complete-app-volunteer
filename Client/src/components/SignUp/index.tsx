@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import "./styles"
 import { StyledContainer } from "./styles";
-const axios = require('axios').default;
+import axios from "axios"
 
 interface ResponseData {
     statusCode: number,
@@ -18,12 +18,12 @@ export function SignUp() {
     }
 
     function handleClick() {
-        axios.post(
+        axios.post<ResponseData>(
             "http://localhost:3333/volunteer", {
             name: name,
             email: email,
             password: password
-        }).then((response: ResponseData) => { console.log(response) })
+        }).then((response) => { console.log(response) })
 
     }
 
