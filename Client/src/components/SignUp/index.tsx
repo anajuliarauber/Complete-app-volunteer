@@ -4,14 +4,14 @@ import { StyledContainer } from "./styles";
 import axios from "axios"
 
 interface ResponseData {
-    statusCode: number,
-    data: string
+    auth: boolean
 }
 
 export function SignUp() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    let data = null;
 
     function handleSubmit(event: FormEvent) {
         event.preventDefault()
@@ -25,7 +25,10 @@ export function SignUp() {
                 email: email,
                 password: password
             })
-            console.log(response)
+
+            if (response.data.auth){
+                alert("Usuário cadastrado com sucesso")
+            }
 
         } catch (error: any) {
             alert(error.response.data)
@@ -68,6 +71,7 @@ export function SignUp() {
                 </div>
 
                 <button type="submit" onClick={handleClick} >Cadastrar</button>
+                {data && <p>{data}</p>}
             </form>
         </StyledContainer>
 
