@@ -17,13 +17,19 @@ export function SignUp() {
         event.preventDefault()
     }
 
-    function handleClick() {
-        axios.post<ResponseData>(
-            "http://localhost:3333/volunteer", {
-            name: name,
-            email: email,
-            password: password
-        }).then((response) => { console.log(response) })
+    async function handleClick() {
+        try {
+            const response = await axios.post<ResponseData>(
+                "http://localhost:3333/volunteer", {
+                name: name,
+                email: email,
+                password: password
+            })
+            console.log(response)
+
+        } catch (error: any) {
+            alert(error.response.data)
+        }
 
     }
 
@@ -60,11 +66,6 @@ export function SignUp() {
                         value={password}
                     />
                 </div>
-
-                {/* <div>
-                        <label htmlFor="password2">Repita a sua senha</label>
-                        <input type="password" id="password2" />
-                    </div> */}
 
                 <button type="submit" onClick={handleClick} >Cadastrar</button>
             </form>
